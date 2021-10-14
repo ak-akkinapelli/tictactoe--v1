@@ -1,9 +1,8 @@
 /*Initial Declaration */
 
 const Status = document.querySelector('.game--status');
-let Active = true;
-let currentPlayer = 'X';
-let gameState = ["","","","","","","","",""];
+const X_turn = 'X';
+const O_turn = 'O';
 const winningConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -14,10 +13,13 @@ const winningConditions = [
     [0, 4, 8],
     [2, 4, 6]
 ];
-
 const playerTurn = () => `It's ${currentPlayer}'s turn`;
 const DrawMessage = () => `Draw Match`;
 const WinningMessage =() => `Player ${currentPlayer} has won.`
+
+let Active = true;
+let currentPlayer = X_turn;
+let gameState = ["","","","","","","","",""];
 
 Status.innerHTML = playerTurn();
 
@@ -81,14 +83,14 @@ function resultValidation()
 
 /*change current player */
 function PlayerChange() {
-    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    currentPlayer = currentPlayer === X_turn ? O_turn : X_turn;
     Status.innerHTML = playerTurn();
 }
 
 /*restart */
 function GameRestart() {
     Active = true;
-    currentPlayer = 'X';
+    currentPlayer = X_turn;
     gameState=["","","","","","","","",""];
     Status.innerHTML = playerTurn();
     document.querySelectorAll('.cell').forEach(cell=> cell.innerHTML = "");
